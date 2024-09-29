@@ -1,0 +1,40 @@
+
+public class parentchild3 extends Parentclasschild1 {
+	
+	int a;
+	
+	public parentchild3(int a) {
+		// TODO Auto-generated constructor stub
+		super(a);//parent class constructor is invoked 
+		this.a=a;
+	}
+	
+
+
+
+	public int increment()
+	{
+		a=a+1; 
+		return a;
+	}
+	
+	public int decrement()
+	{
+		a=a-1; 
+		return a;
+	}
+	public int Multiplaytwo1()
+	{
+		a=a*2;
+		return a;
+	}
+
+
+
+
+
+
+
+
+
+}

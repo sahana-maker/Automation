@@ -1,0 +1,102 @@
+package rahulshettyacademy.SelenumFrameworkDesign;
+import java.time.Duration;
+import java.util.List;
+import java.util.stream.Stream;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Standalonetest {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		//WebDriverManager.chromedriver().setup();
+		WebDriver driver = new EdgeDriver();
+		
+		
+	    String productName = "ZARA COAT 3";
+	    
+		//implicit wait global wait 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+		driver.get("https://rahulshettyacademy.com/client");
+		
+		driver.findElement(By.id("userEmail")).sendKeys("sahara12saanu@gmail.com");
+		driver.findElement(By.id("userPassword")).sendKeys("Saanu@123");
+		driver.findElement(By.id("login")).click();
+		
+		// globally explicit wait - untill particular element display
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+				// need to give conditions 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
+				
+		
+		List <WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
+		
+		//apply javastream smart type of coding help of stream and fillter method 
+		
+		//add to cart items
+		WebElement prod = products.stream().filter(product-> 
+		product.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
+		
+		prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
+		
+		//animate disapare item once hightlights not disable 
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#toast-container")));
+		
+		//click the cart 
+		driver.findElement(By.cssSelector("[routerlink*='cart']")).click();
+		
+		
+		//cart section
+		
+		List <WebElement> cartproducts = driver.findElements(By.cssSelector(".cartScetion h3"));
+		
+		//checking based on stream selected item are showing correct in cart page 
+		boolean match = cartproducts.stream().anyMatch(cartproduct->cartproduct.getText().equalsIgnoreCase(productName));
+		//Assert.assertTrue(match);
+		
+		//button click using parent child traverse
+		
+		driver.findElement(By.cssSelector(".totalRow button")).click();
+		
+		//type country and select
+		//we can write botha ways 1. actions 2. normal find element
+		
+		Actions a = new Actions(driver);
+		a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")),"india").build().perform();
+		
+		//uponing pop up india it will take time we need to use wait explicit wait method we can use threadsleep also
+		//we already created wait object now directly we can go with 
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
+		//click to pop up india 
+     driver.findElement(By.xpath("(//button[contains(@class,'ta-item')])[2]")).click();
+     //click to submit 
+     Thread.sleep(2000);   
+     JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,500)");
+     driver.findElement(By.cssSelector(".action__submit")).click();
+     
+     //checking msg thankyou assert also
+     
+     String confirmMessage = driver.findElement(By.cssSelector(".hero-primary")).getText();
+     Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
+     driver.close();
+     
+     
+	}
+
+}
+
+

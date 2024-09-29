@@ -1,0 +1,19 @@
+[
+	
+	{
+		"email" : "sahara12saanu@gmail.com",
+		"password" : "Saanu@123",
+		"product" : "ZARA COAT 3"	
+	}
+	,
+	{
+		  "email" : "saanu@gmail.com",
+				"password" : "anuanu@123",
+				"product" : "ZARA COAT 3"	
+	}
+	
+	
+	
+	
+	
+]

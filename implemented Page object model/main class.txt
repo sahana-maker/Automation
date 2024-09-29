@@ -1,0 +1,81 @@
+package rahulshettyacademy.SelenumFrameworkDesign;
+import java.time.Duration;
+import java.util.List;
+import java.util.stream.Stream;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import rahulshettyacademy.SelenumFrameworkDesign.pageobject.CartPage;
+import rahulshettyacademy.SelenumFrameworkDesign.pageobject.Checkoutpage1;
+import rahulshettyacademy.SelenumFrameworkDesign.pageobject.Confirmationpage;
+import rahulshettyacademy.SelenumFrameworkDesign.pageobject.LandingPage;
+import rahulshettyacademy.SelenumFrameworkDesign.pageobject.ProductCatalog;
+
+public class SubmitorderTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		//WebDriverManager.chromedriver().setup();
+		WebDriver driver = new EdgeDriver();
+		
+		
+	    String productName = "ZARA COAT 3";
+	    
+		//implicit wait global wait 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+		
+		
+		//creating page object /landing on page
+		LandingPage landingPage = new LandingPage(driver);
+		//open url
+		landingPage.goTo();
+		//clicking login
+		ProductCatalog productCatalogue = landingPage.loginApplication("sahara12saanu@gmail.com", "Saanu@123");
+	ProductCatalog ProductCatalogue = new ProductCatalog(driver);	
+		//add product 
+		List <WebElement> products = productCatalogue.getProductList();
+		//adding product
+		productCatalogue.addProductToCart(productName);
+		productCatalogue.getProductList();
+		//click the cart ///cart section
+		CartPage cartPage =new CartPage(driver);
+		//CartPage cartPage = productCatalogue.goToCardPage();
+		//verify the product 
+		Boolean match = cartPage.VerifyProductDisplay(productName);
+		//checking based on stream selected item are showing correct in cart page 
+		//Assert.assertTrue(match);
+		//button click 
+		Checkoutpage1  checkoutPage1 = cartPage.goToCheckout();
+		
+		//type country and select //click to pop up india 
+		checkoutPage1.selectCountry.click();
+		 
+		//click to submit  
+	     JavascriptExecutor js = (JavascriptExecutor)driver;
+			js.executeScript("window.scrollBy(0,500)");
+			
+			Confirmationpage confirmationpage = checkoutPage1.submitOrder();
+		
+			//checking msg thankyou assert also
+     
+     String confirmMessage = Confirmationpage.getConfimationMrssage();
+     Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
+     driver.close();
+     
+     
+	}
+
+}
+
+

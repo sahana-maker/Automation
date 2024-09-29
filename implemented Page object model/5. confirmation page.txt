@@ -1,0 +1,36 @@
+package rahulshettyacademy.SelenumFrameworkDesign.pageobject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import rahulsheetyacadamy.abstractcomponents.abstractcomponent;
+
+public class Confirmationpage extends abstractcomponent{
+	
+	WebDriver driver;
+	
+	public Confirmationpage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	
+	@FindBy(css =".hero-primary")
+	static
+	WebElement confirmationMessage;
+	  
+	public static String getConfimationMrssage()
+	{
+	return confirmationMessage.getText();
+	
+	}
+	
+
+	
+	}
+	
+

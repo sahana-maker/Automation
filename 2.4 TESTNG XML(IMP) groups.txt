@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name ="Test">
+  <groups>
+  <run>
+  <include  name="smoke"/>
+  </run>
+  </groups>
+  <classes>
+      <class name="test.akk"/>
+      <class name="test.testng2"/>
+      <class name="test.testng3"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+---------
+
+package test;
+
+import org.testng.annotations.Test;
+
+public class testng3 {
+	
+	@Test(groups = {"smoke"})
+	public void from()
+	{
+		System.out.println("3 weblogin");
+	}
+	
+	
+	@Test
+	public void mobileloan()
+	{
+		System.out.println("3 mobilelogin");
+	}
+	
+	@Test
+	public void loginapi()
+	{
+		System.out.println("3 apilogin");
+	}
+	@Test
+	public void mobile2()
+	{
+		System.out.println("3 apilogin");
+	}
+	public void mobile3()
+	{
+		System.out.println(" 3 apilogin");
+	}
+	public void mobile4()
+	{
+		System.out.println("3 apilogin");
+	}
+
+
+}

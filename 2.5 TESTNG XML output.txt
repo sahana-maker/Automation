@@ -1,0 +1,59 @@
+[RemoteTestNG] detected TestNG version 7.4.0
+2 i will execute first beforesuit 
+2 i am first before test 
+1. hello
+1. Akash
+2.i will execute before methoad am beforeclass
+2 i will execute before evry test method in 2 beforemethod
+2.saanu
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute after methoad am afterclass
+3 apilogin
+3 apilogin
+3 mobilelogin
+3 weblogin
+2 last execution aftertest
+2 i will execute at last aftersuite
+
+===============================================
+
+[RemoteTestNG] detected TestNG version 7.4.0
+2 i will execute first beforesuit 
+2 i am first before test 
+1. hello
+1. Akash
+2.i will execute before methoad am beforeclass
+2 i will execute before evry test method in 2 beforemethod
+2.saanu
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute before evry test method in 2 beforemethod
+3 KEB3
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute before evry test method in 2 beforemethod
+3 WEB
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute before evry test method in 2 beforemethod
+3 timeout
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute before evry test method in 2 beforemethod
+3 false/true1
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute before evry test method in 2 beforemethod
+3 API
+2 i will execute after last evry test method in 2 aftermethod 
+2 i will execute after methoad am afterclass
+3 weblogin
+3 apilogin
+3 apilogin
+3 mobilelogin
+2 last execution aftertest
+2 i will execute at last aftersuite
+
+===============================================
+Suite
+Total tests run: 12, Passes: 12, Failures: 0, Skips: 0
+===============================================
+
+
+
+

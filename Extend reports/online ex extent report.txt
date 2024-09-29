@@ -1,0 +1,26 @@
+public class ExtendReportsDemo {
+    ExtentReports extent;
+
+    @BeforeTest
+    public void conf() {
+        String path = System.getProperty("user.dir") + "/reports/index.html";
+        ExtentSparkReporter reporter = new ExtentSparkReporter(path);
+        reporter.config().setReportName("Automation Test Results");
+        reporter.config().setDocumentTitle("Test Results");
+
+        extent = new ExtentReports();
+        extent.attachReporter(reporter);
+        extent.setSystemInfo("Tester", "Your Name");
+    }
+
+    @Test
+    public void InitialDemo() {
+        ExtentTest test = extent.createTest("Initial Demo");
+        test.pass("Test passed successfully");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        extent.flush();
+    }
+}

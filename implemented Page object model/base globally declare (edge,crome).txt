@@ -1,0 +1,71 @@
+package rahulshettyacadmey.testcomponent;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import rahulshettyacademy.SelenumFrameworkDesign.pageobject.LandingPage;
+
+public class BaseTest { 
+	
+	public BaseTest(WebDriver driver) {
+		super();
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public WebDriver driver;
+	public LandingPage landingpage;
+	
+	
+	public WebDriver initalizedDrive() throws IOException
+	{
+
+		//properties class 
+		Properties prop = new Properties();
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"C:\\Users\\Sahana Ursu\\eclipse-workspace\\SelenumFrameworkDesign\\src\\main\\java\\rahulshettyacademy\\resources\\GlobalData.properties");  
+	    prop.load(fis);
+		String BrowserName = prop.getProperty("browser");
+		
+		
+		
+			WebDriver driver = new EdgeDriver();
+			//implicit wait global wait 
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().window().maximize();
+			return driver;
+
+	
+		
+	}
+	
+	//firefox
+	//edge
+	
+	
+	@BeforeMethod
+	public LandingPage lunchApplication() throws IOException
+	{
+	
+		 driver = initalizedDrive();
+		 LandingPage landingpage =  new LandingPage(driver);
+		landingpage.goTo();
+		return landingpage;
+	}
+	
+	@AfterMethod
+	public void tearDown()
+	{
+		driver.close();
+	}
+}
+

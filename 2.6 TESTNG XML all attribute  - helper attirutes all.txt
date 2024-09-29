@@ -1,0 +1,108 @@
+package test;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class testng2 {
+	
+	@BeforeClass
+
+	public void Demo36()
+			{
+				System.out.println("2.i will execute before methoad am beforeclass");
+			}
+	
+@Test(groups = {"smoke"})
+	
+	public void  Demo3()
+	{
+		
+		System.out.println("2.saanu");
+	}
+	
+	@BeforeTest
+	
+	public void Demo4()
+			{
+				System.out.println("2 i am first before test ");
+			}
+	
+	@AfterSuite
+
+	public void Demo10()
+			{
+				System.out.println("2 i will execute at last aftersuite");
+			}
+	
+@AfterTest
+	
+	public void Demo5()
+			{
+				System.out.println("2 last execution aftertest");
+			}
+@AfterClass
+
+public void Demo15()
+		{
+			System.out.println("2 i will execute after methoad am afterclass");
+		}
+@BeforeSuite
+
+public void Demo6()
+		{
+			System.out.println("2 i will execute first beforesuit ");
+		}
+@BeforeMethod
+
+public void Demo16()
+		{
+			System.out.println("2 i will execute before evry test method in 2 beforemethod");
+		}
+@AfterMethod
+
+public void Demo26()
+		{
+			System.out.println("2 i will execute after last evry test method in 2 aftermethod ");
+		}
+
+@Test
+public void WEB()
+{
+	System.out.println("3 WEB");
+}
+
+@Test(dependsOnMethods= {"WEB","KEB"})
+public void API()
+{
+	System.out.println("3 API");
+}
+@Test
+public void KEB()
+{
+	System.out.println("3 KEB3");
+}
+
+@Test(enabled = false)
+public void FT()
+{
+	System.out.println("3 false/true");
+}
+@Test(enabled = true)
+public void FT1()
+{
+	System.out.println("3 false/true1");
+}
+
+@Test(timeOut = 4000)
+public void time()
+{
+	System.out.println("3 timeout");
+}
+}
